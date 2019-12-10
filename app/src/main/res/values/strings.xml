@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">RecyclerViewMainPage</string>
+    <string name="period">За %d дней</string>
+    <string name="cashback_amount">Кэшбэк до %d %</string>
+</resources>
