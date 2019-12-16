@@ -47,14 +47,15 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
 
         String transactions = String.format(templateForTransactions,postModel.getTransactionsAmount());
         String periodStr = String.format(templateForPeriod, postModel.getPeriod());
-        String cashbackStr = String.format(templateForCashback,postModel.getCashbackAmount());
+        String cashbackStr = String.format(templateForCashback, postModel.getCashbackAmount());
 
         filialName.setText(postModel.getFilialName());
-        categoryName.setText(postModel.getFilialName());
+        categoryName.setText(postModel.getCategoryName());
         transactonsAmount.setText(transactions);
-        period.setText(periodStr);
-        cashbackAmount.setText(cashbackStr);
         Glide.with(itemView).load(postModel.getImageUrl()).into(postImage);
         Glide.with(itemView).load(postModel.getLogoUrl()).into(filialLogo);
+        period.setText(periodStr);
+        cashbackAmount.setText(cashbackStr);
+
     }
 }

@@ -11,21 +11,21 @@ import java.util.ArrayList;
 
 public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> {
 
-    private ArrayList<PostModel> postModels = new ArrayList<>();
+    private ArrayList<PostModel> postModelArrayList = new ArrayList<>();
 
     public PostAdapter(ArrayList<PostModel> postModels) {
-        this.postModels.addAll(postModels);
+        this.postModelArrayList.addAll(postModels);
         notifyDataSetChanged();
     }
 
     public void refreshPosts(ArrayList<PostModel> post) {
-        this.postModels.clear();
-        this.postModels.addAll(post);
+        this.postModelArrayList.clear();
+        this.postModelArrayList.addAll(post);
         notifyDataSetChanged();
     }
 
     public void addPosts(ArrayList<PostModel> post) {
-        this.postModels.addAll(post);
+        this.postModelArrayList.addAll(post);
         notifyDataSetChanged();
     }
 
@@ -38,11 +38,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull PostViewHolder holder, int position) {
-        holder.bind(postModels.get(position));
+        holder.bind(postModelArrayList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return postModels.size();
+        return postModelArrayList.size();
     }
 }
