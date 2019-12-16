@@ -5,10 +5,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.view.menu.MenuView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import de.hdodenhof.circleimageview.CircleImageView;
+
+import static java.lang.String.valueOf;
 
 public class PostViewHolder extends RecyclerView.ViewHolder {
 
@@ -22,6 +25,8 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     private TextView cashbackAmount;
 
     private String templateForPeriod;
+    private String templateForCashback;
+    private String templateForTransactions;
 
     public PostViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -34,15 +39,22 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         cashbackAmount = itemView.findViewById(R.id.cashback_amount);
 
         templateForPeriod = itemView.getResources().getString(R.string.period);
+        templateForCashback = itemView.getResources().getString(R.string.cashback_amount);
+        templateForTransactions = itemView.getResources().getString(R.string.transactions_amount);
     }
 
     public void bind(PostModel postModel) {
 
-        filialName.setText(postModel.getFilialName());
-        categoryName.setText(postModel.getCashbackAmount());
-        transactonsAmount.setText(postModel.getTransactionsAmount());
+        String transactions = String.format(templateForTransactions,postModel.getTransactionsAmount());
         String periodStr = String.format(templateForPeriod, postModel.getPeriod());
+        String cashbackStr = String.format(templateForCashback,postModel.getCashbackAmount());
+
+        filialName.setText(postModel.getFilialName());
+        categoryName.setText(postModel.getFilialName());
+        transactonsAmount.setText(transactions);
         period.setText(periodStr);
-        cashbackAmount.setText(postModel.getCashbackAmount());
+        cashbackAmount.setText(cashbackStr);
+        Glide.with(itemView).load(postModel.getImageUrl()).into(postImage);
+        Glide.with(itemView).load(postModel.getLogoUrl()).into(filialLogo);
     }
 }
